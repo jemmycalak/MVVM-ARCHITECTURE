@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.mvvm.examples"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        buildTypes.each {
+            it.buildConfigField 'String', 'BASEURL', BASEURL
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.core:core-ktx:$rootProject.androidxCoreKTX"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+
+    //dagger
+    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+
+    //loging
+    implementation "com.jakewharton.timber:timber:$rootProject.timber"
+
+    // parser
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    //network
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitAdapter"
+    implementation "com.squareup.picasso:picasso:$rootProject.picaso"
+    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:$rootProject.picasoDownloader"
+    implementation "com.jakewharton.timber:timber:$rootProject.timber"
+
+    //reactive
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ioReactiveRxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ioReactiveRxJava"
+
+    // view model
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+//    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+
+    // database
+    implementation "androidx.room:room-rxjava2:$rootProject.roomDatabaseVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomDatabaseVersion"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
