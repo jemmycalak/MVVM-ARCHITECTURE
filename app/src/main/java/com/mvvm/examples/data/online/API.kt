@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface API {
 
-    @GET("org/Google/repos")
+    @GET("orgs/Google/repos")
     fun getListRepo():Single<List<RepoModel>>
 }

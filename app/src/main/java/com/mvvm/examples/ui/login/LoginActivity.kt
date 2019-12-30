@@ -23,7 +23,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginModel>(), LoginLis
     override fun getBindingVariable(): Int = BR.loginModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("onUdateUI", "<<<<<<")
         super.onCreate(savedInstanceState)
         loginModel.setNavigator(this)
     }

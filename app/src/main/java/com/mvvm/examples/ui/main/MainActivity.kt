@@ -21,9 +21,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainModel>(), MainListene
     override fun getBindingVariable(): Int = BR.mainModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("onUdateUI", "<<<<<<")
         super.onCreate(savedInstanceState)
         mainModel.setNavigator(this)
+        mainModel.onCreate()
     }
 
     override fun getViewModel(): MainModel {

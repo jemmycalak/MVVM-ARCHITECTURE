@@ -16,6 +16,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>?> : AppCom
     var isCancelable = false
     var isCancelable2 = false
 
+    protected abstract fun getBindingVariable(): Int
+
     @LayoutRes
     protected abstract fun getLayoutId(): Int
 
@@ -24,30 +26,21 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>?> : AppCom
 
     open fun getThemResId(): Int = -1
 
-    protected abstract fun getBindingVariable(): Int
-
-    //protected abstract fun updateUI(savedInstanceState: Bundle?)
-
     abstract fun getViewModel(): V
 
     override fun onCreate(savedInstanceState: Bundle?) {
         performDI()
-        performDataBinding()
         super.onCreate(savedInstanceState)
+        performDataBinding()
     }
 
     private fun performDI() =AndroidInjection.inject(this)
 
     private fun performDataBinding() {
-        Log.e("performDataBinding", "1<<<<<<<<")
         binding = DataBindingUtil.setContentView(this, getLayoutId())
-        Log.e("performDataBinding", "2<<<<<<<<")
         mViewModel = if(mViewModel == null) getViewModel() else mViewModel
-        Log.e("performDataBinding", "3<<<<<<<<")
         binding.setVariable(getBindingVariable(), getViewModel())
-        Log.e("performDataBinding", "4<<<<<<<<")
         binding.executePendingBindings()
-        Log.e("performDataBinding", "5<<<<<<<<")
     }
 
 }

@@ -38,9 +38,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashModel>(), Splas
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("onUdateUI", "1<<<<<<")
         super.onCreate(savedInstanceState)
         mainViewModel.setNavigator(this)
+        mainViewModel.onCreate()
 
     }
 }

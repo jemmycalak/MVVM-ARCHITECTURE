@@ -8,6 +8,8 @@ import com.mvvm.examples.data.local.pref.UserPref
 import com.mvvm.examples.data.online.ApiManager
 import com.mvvm.examples.data.online.Presenter
 import com.mvvm.examples.ui.base.App
+import com.mvvm.examples.utils.scheduler.SchedulerListener
+import com.mvvm.examples.utils.scheduler.SchedulerProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -30,5 +32,8 @@ class AppModule {
     @Provides
     @Singleton
     fun providePresenter(presenter:Presenter):ApiManager = presenter
+
+    @Provides
+    fun provideScheduler(scheduler:SchedulerProvider):SchedulerListener = scheduler
 
 }
